@@ -27,11 +27,11 @@ Replaces any licenses within `package.json` files with `MIT` (original files wil
 
 ```powershell
 gci -Recurse -Filter package.json | Select-String '"license": ".+?"' -List | %{
-    ((gc $_.Path -Raw -Encoding utf8) -replace '"license": ".+?"', '"license": "MIT"') | out-file $_.Path -NoNewline -Encoding utf8 }
+    ((gc $_.Path -Raw -Encoding utf8) -replace '"license": ".+?"', '"license": "MIT"') | Out-File $_.Path -NoNewline -Encoding utf8 }
 ```
 
 Remarks:
- * The `-List` option will group multiple matches into one result.
+ * The `-List` option will group multiple matches within one file into single result.
  * The `-Raw` option will read entire file contents as one string.
  * The `-NoNewline` option will not add new line symbols to the end of the file.
 
@@ -40,7 +40,7 @@ Remarks:
 
 ### Illform-encoded file fix
 
-`UTF16LE` illformed file fix (removes `BOM`, zero bytes and `CR` only line breaks):
+`UTF16LE` illformed file fix (removes `BOM`, zero bytes and `CR`-only line breaks):
 
 ```powershell
 $CR = [byte][char]"`r"
@@ -50,9 +50,9 @@ $bytes_fixed = [collections.generic.list[byte]]::new()
 for ($i = 2; $i -lt $bytes_in.Length; $i++) {
     $byte = $bytes[$i]
     if ($byte -ne 0) {
-	    if (($byte -eq $CR) -and ($bytes[$i + 1] -ne $NL)) {
+	if (($byte -eq $CR) -and ($bytes[$i + 1] -ne $NL)) {
             continue
-	    }
+	}
         $bytes_fixed.Add($byte)
     }
 }
