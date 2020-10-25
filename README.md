@@ -1,9 +1,10 @@
 # cheatsheets
 
-My various cheatsheets and recipes.
+My cheatsheets and recipes.
 
 
 ## Index
 
-  * [PowerShell Cheatsheet](Cheatsheets/PowerShell.md)
+  * [PowerShell](Cheatsheets/PowerShell.md)
+  * [Python](Cheatsheets/Python.md)
 
