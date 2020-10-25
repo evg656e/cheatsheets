@@ -1,4 +1,4 @@
-# PowerShell Cheatsheets
+# PowerShell Cheatsheet
 
 
 ## Index
