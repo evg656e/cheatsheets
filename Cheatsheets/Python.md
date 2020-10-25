@@ -99,7 +99,7 @@ pip install -U rope
 ### Configs
 
  * `settings.json`:
-```json
+```json5
 {
     "python.pythonPath": "c:\\evg656e\\Projects\\_venv\\sample\\Scripts\\python.exe",
     "python.linting.pylintEnabled": true,
@@ -129,7 +129,7 @@ pip install -U rope
 ```
 
  * `launch.json`:
-```json
+```json5
 {
     // Use IntelliSense to learn about possible attributes.
     // Hover to view descriptions of existing attributes.
