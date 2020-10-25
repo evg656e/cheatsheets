@@ -20,7 +20,6 @@ Searches all JavaScript files for classes that begin with `Test`, excluding `nod
 gci -Recurse -Include *.js | ?{ $_.FullName -inotmatch 'node_modules' } | Select-String '\bclass\s+Test'
 ```
 
-
 ### Search and replace
 
 Replaces any licenses within `package.json` files with `MIT` (original files will be overwritten):
