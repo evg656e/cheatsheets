@@ -6,6 +6,7 @@
  * [Global regex search and replace](#Global%20regex%20search%20and%20replace)
    * [Search with directory exclude](#Search%20with%20directory%20exclude)
    * [Search and replace](#Search%20and%20replace)
+   * [Recursively remove specified directories](#Recursively%20remove%20specified%20directories)
  * [File IO](#File%20IO)
    * [Illform-encoded file fix](#Illform-encoded%20file%20fix)
 
@@ -34,6 +35,14 @@ Remarks:
  * The `-Raw` option will read entire file contents as one string.
  * The `-NoNewline` option will not add new line symbols to the end of the file.
 
+
+### Recursively remove specified directories
+
+Recursively scans and removes specified directories (`build` and `node_modules`):
+
+```powershell
+gci -Recurse -Include build, node_modules -Directory | rmdir -Recurse -Force
+```
 
 ## File IO
 
