@@ -72,6 +72,7 @@ virtualenv -p "C:\Users\$env:USERNAME\AppData\Local\Programs\Python\Python38-32\
 
  * [How do I add a path to PYTHONPATH in virtualenv](https://stackoverflow.com/questions/10738919/how-do-i-add-a-path-to-pythonpath-in-virtualenv)
  * [Setting an environment variable in virtualenv](https://stackoverflow.com/questions/9554087/setting-an-environment-variable-in-virtualenv)
+ * [Visual Studio Code - How to add multiple paths to python path?](https://stackoverflow.com/questions/41471578/visual-studio-code-how-to-add-multiple-paths-to-python-path/)
 
 
 ## pylint
