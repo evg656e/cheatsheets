@@ -12,6 +12,7 @@
    * [Links](#Links)
    * [Install](#Install)
    * [Setup](#Setup)
+   * [PYTHONPATH](#PYTHONPATH)
    * [Questions](#Questions)
  * [pylint](#pylint)
    * [Links](#Links)
@@ -65,8 +66,18 @@ pip install virtualenv
 
 ```powershell
 virtualenv -p C:\Python27\python.exe venv2
-virtualenv -p "C:\Users\$env:USERNAME\AppData\Local\Programs\Python\Python38-32\python.exe" venv3
+virtualenv -p "C:\Users\$env:USERNAME\AppData\Local\Programs\Python\Python38-32\python.exe" venv
 ```
+
+### PYTHONPATH
+
+ 1. Create `.pth` file with one path to dir with modules per line, e.g. `mylib.pth`:
+```
+C:/evg656e/Projects/py/lib/common
+C:/evg656e/Projects/py/lib/extras
+```
+
+ 2. Place it into your project virtualenv's `site-packages` dir, e.g. `C:/evg656e/Projects/py/myproj/venv/Lib/site-packages`
 
 ### Questions
 
@@ -132,9 +143,6 @@ pip install -U rope
  * `launch.json`:
 ```json5
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
         {
@@ -146,9 +154,28 @@ pip install -U rope
                 "--usage",
             ],
             "console": "integratedTerminal",
-            // "env": {
-            //     "PYTHONPATH": "C:\\evg656e\\Projects\\py\\common;${env:PYTHONPATH}"
-            // }
+        }
+    ]
+}
+```
+
+ * `launch.json` with `PYTHONPATH` set (better use [virtualenv](#virtualenv) with [.pth file](#PYTHONPATH)):
+```json5
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run sample",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/sample/main.py",
+            "args": [
+                "--usage",
+            ],
+            "console": "integratedTerminal",
+            "env": {
+                "PYTHONPATH": "C:/evg656e/Projects/py/common;${env:PYTHONPATH}"
+            },
         }
     ]
 }
