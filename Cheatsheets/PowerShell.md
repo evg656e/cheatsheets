@@ -9,6 +9,8 @@
    * [Recursively remove specified directories](#Recursively%20remove%20specified%20directories)
  * [File IO](#File%20IO)
    * [Illform-encoded file fix](#Illform-encoded%20file%20fix)
+ * [VS Code](#VS%20Code)
+   * [Disable Integrated Console on Startup](#Disable%20Integrated%20Console%20on%20Startup)
 
 
 ## Global regex search and replace
@@ -66,3 +68,17 @@ for ($i = 2; $i -lt $bytes_in.Length; $i++) {
 }
 [io.file]::WriteAllBytes('resource_fixed.h', $bytes_fixed)
 ```
+
+## VS Code
+
+### Disable Integrated Console on Startup
+
+Open `VS Code`, press `Ctrl+Shift+P`, type `Open Settings (JSON)`, add to file:
+```json5
+{
+    "powershell.integratedConsole.showOnStartup": false
+}
+```
+
+Links:
+ * https://github.com/PowerShell/vscode-powershell/issues/580
