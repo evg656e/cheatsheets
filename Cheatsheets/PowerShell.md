@@ -3,14 +3,17 @@
 
 ## Index
 
- * [Global regex search and replace](#Global%20regex%20search%20and%20replace)
-   * [Search with directory exclude](#Search%20with%20directory%20exclude)
-   * [Search and replace](#Search%20and%20replace)
-   * [Recursively remove specified directories](#Recursively%20remove%20specified%20directories)
- * [File IO](#File%20IO)
-   * [Illform-encoded file fix](#Illform-encoded%20file%20fix)
- * [VS Code](#VS%20Code)
-   * [Disable Integrated Console on Startup](#Disable%20Integrated%20Console%20on%20Startup)
+ * [Global regex search and replace](#Global-regex-search-and-replace)
+   * [Search with directory exclude](#Search-with-directory-exclude)
+   * [Search and replace](#Search-and-replace)
+   * [Recursively remove specified directories](#Recursively-remove-specified-directories)
+ * [File IO](#File-IO)
+   * [Illform-encoded file fix](#Illform-encoded-file-fix)
+ * [VS Code](#VS-Code)
+   * [Open settings file](#Open-settings-file)
+   * [Disable Integrated Console on Startup](#Disable-Integrated-Console-on-Startup)
+   * [Unsing custom PowerShell version as default](#Unsing-custom-PowerShell-version-as-default)
+   * [Disabling code lens for PowerShell](#Disabling-code-lens-for-PowerShell)
 
 
 ## Global regex search and replace
@@ -71,14 +74,32 @@ for ($i = 2; $i -lt $bytes_in.Length; $i++) {
 
 ## VS Code
 
+### Open settings file
+
+Open `VS Code`, press `Ctrl+Shift+P`, type `Open Settings (JSON)`.
+
 ### Disable Integrated Console on Startup
 
-Open `VS Code`, press `Ctrl+Shift+P`, type `Open Settings (JSON)`, add to file:
 ```json5
 {
     "powershell.integratedConsole.showOnStartup": false
 }
 ```
 
-Links:
- * https://github.com/PowerShell/vscode-powershell/issues/580
+### Unsing custom PowerShell version as default
+
+```json5
+{
+    "terminal.integrated.shell.windows": "C:/Program Files/PowerShell/7/pwsh.exe"
+}
+```
+
+### Disabling code lens for PowerShell
+
+```json5
+{
+    "[powershell]": {
+        "editor.codeLens": false
+    }
+}
+```
