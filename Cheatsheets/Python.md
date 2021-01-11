@@ -5,23 +5,33 @@
  * [General](#General)
    * [Links](#Links)
  * [pip](#pip)
-   * [Links](#Links)
+   * [Links](#Links-1)
    * [Questions](#Questions)
    * [Commands](#Commands)
  * [virtualenv](#virtualenv)
-   * [Links](#Links)
+   * [Links](#Links-2)
    * [Install](#Install)
    * [Setup](#Setup)
    * [PYTHONPATH](#PYTHONPATH)
-   * [Questions](#Questions)
+   * [Questions](#Questions-1)
  * [pylint](#pylint)
-   * [Links](#Links)
+   * [Links](#Links-3)
  * [VSCode](#VSCode)
-   * [Links](#Links)
-   * [Packages](#Packages)
-   * [Configs](#Configs)
- * [Python 2 and 3 compatibility](#Python%202%20and%203%20compatibility)
-   * [Links](#Links)
+   * [Links](#Links-4)
+   * [Install](#Install-1)
+   * [settings.json](#settings.json)
+   * [launch.json](#launch.json)
+ * [Python 2 and 3 compatibility](#Python-2-and-3-compatibility)
+   * [Links](#Links-5)
+ * [Unit Testing with `unittest`](#Unit-Testing-with-unittest)
+   * [Code samples](#Code-samples)
+   * [Running](#Running)
+   * [Links](#Links-6)
+ * [Code coverage](#Code-coverage)
+   * [Install](#Install-2)
+   * [Usage with `unittest`](#Usage-with-unittest)
+   * [Config](#Config)
+   * [Links](#Links-7)
 
 
 ## General
@@ -65,8 +75,8 @@ pip install virtualenv
 ### Setup
 
 ```powershell
-virtualenv -p C:\Python27\python.exe venv2
-virtualenv -p "C:\Users\$env:USERNAME\AppData\Local\Programs\Python\Python38-32\python.exe" venv
+virtualenv -p C:/Python27/python.exe venv2
+virtualenv -p "$env:LOCALAPPDATA/Programs/Python/Python39/python.exe" venv
 ```
 
 ### PYTHONPATH
@@ -77,7 +87,17 @@ C:/evg656e/Projects/py/lib/common
 C:/evg656e/Projects/py/lib/extras
 ```
 
- 2. Place it into your project virtualenv's `site-packages` dir, e.g. `C:/evg656e/Projects/py/myproj/venv/Lib/site-packages`
+ 2. Place it into your project virtualenv's `site-packages` dir, e.g. `C:/evg656e/Projects/py/sample/venv/Lib/site-packages`
+
+### Activate
+
+```powershell
+cd C:/evg656e/Projects/py/sample
+./venv/Scripts/activate.ps1
+# you will enter virtualenv here
+# to exit from virtualenv type
+deactivate
+```
 
 ### Questions
 
@@ -100,7 +120,7 @@ C:/evg656e/Projects/py/lib/extras
  * [VSCode Python](https://code.visualstudio.com/docs/python/python-tutorial)
  * [VSCode Variables Reference](https://code.visualstudio.com/docs/editor/variables-reference)
 
-### Packages
+### Install
   
 ```console
 pip install -U pylint
@@ -108,12 +128,15 @@ pip install -U autopep8
 pip install -U rope
 ```
 
-### Configs
+ * [pylint](https://www.pylint.org/)
+ * [autopep8](https://pypi.org/project/autopep8/)
+ * [rope](https://github.com/python-rope/rope)
 
- * `settings.json`:
+### `settings.json`
+
 ```json5
 {
-    "python.pythonPath": "c:\\evg656e\\Projects\\_venv\\sample\\Scripts\\python.exe",
+    "python.pythonPath": "c:/evg656e/Projects/venv/stub/Scripts/python.exe",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true,
     "python.linting.pylintArgs": [
@@ -129,7 +152,7 @@ pip install -U rope
     "python.testing.unittestArgs": [
         "-v",
         "-s",
-        "./sample/test",
+        "./test",
         "-p",
         "test_*.py"
     ],
@@ -140,18 +163,20 @@ pip install -U rope
 }
 ```
 
- * `launch.json`:
+### `launch.json`
+
+Launch program:
 ```json5
 {
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run sample",
+            "name": "Run main",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/sample/main.py",
+            "program": "${workspaceFolder}/main.py",
             "args": [
-                "--usage",
+                "--help",
             ],
             "console": "integratedTerminal",
         }
@@ -159,18 +184,18 @@ pip install -U rope
 }
 ```
 
- * `launch.json` with `PYTHONPATH` set (better use [virtualenv](#virtualenv) with [.pth file](#PYTHONPATH)):
+Launch program with `PYTHONPATH` set (better use [virtualenv](#virtualenv) with [.pth file](#PYTHONPATH)):
 ```json5
 {
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run sample",
+            "name": "Run main",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/sample/main.py",
+            "program": "${workspaceFolder}/main.py",
             "args": [
-                "--usage",
+                "--help",
             ],
             "console": "integratedTerminal",
             "env": {
@@ -181,9 +206,139 @@ pip install -U rope
 }
 ```
 
+Launch module:
+```json5
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Test",
+            "type": "python",
+            "request": "launch",
+            "module": "unittest",
+            "args": [
+                "test/test_tools.py",
+            ],
+            "console": "integratedTerminal",
+        }
+    ]
+}
+```
+
+Attach to process:
+```json5
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python: Attach using Process Id",
+            "type": "python",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        }
+    ]
+}
+```
+
+
 ## Python 2 and 3 compatibility
 
 ### Links
 
  * [Six: Python 2 and 3 Compatibility Library](https://six.readthedocs.io/)
  * [Cheat Sheet: Writing Python 2-3 compatible code](https://python-future.org/compatible_idioms.html)
+
+
+## Unit Testing with `unittest`
+
+### Code samples
+
+`mystring.py`:
+```py
+def capitalize(s):
+    if len(s) == 0:
+        return s
+    return s[0].upper() + s[1:].lower()
+```
+
+`test_mystring.py`:
+```py
+import unittest
+
+from mystring import capitalize
+
+
+class TestMySrting(unittest.TestCase):
+    # skip test
+    @unittest.skip('')
+    def test_capitalize_old(self):
+        self.assertEqual(capitalize('foo'), 'Foo')
+        self.assertEqual(capitalize('BUZZ'), 'Buzz')
+        self.assertEqual(capitalize(''), '')
+
+    # data driven test
+    def test_capitalize(self):
+        for i, (string, result) in enumerate([
+            ['foo', 'Foo'],
+            ['BUZZ', 'Buzz'],
+            ['', '']
+        ]):
+            with self.subTest(i=i):
+                self.assertEqual(capitalize(string), result)
+```
+
+### Running
+
+ * Run by path:
+```console
+python -m unittest test/test_mystring.py test/test_mymath.py
+```
+
+ * Run by module name:
+```console
+python -m unittest test.test_mystring test.test_mymath
+```
+
+ * Run with test discover:
+```console
+python -m unittest discover -s ./test -p "test_*.py"
+```
+
+### Links:
+ * [unittest](https://docs.python.org/3/library/unittest.html)
+
+
+## Code coverage
+
+### Install
+
+```console
+pip install coverage
+```
+
+### Usage with `unittest`
+
+`python` becomes `coverage run` (with some extra `coverage` options if needed):
+```console
+coverage run --branch --omit "venv/*","test/*" -m unittest discover -s ./test -p "test_*.py"
+```
+
+Show results:
+```console
+coverage report
+```
+
+### Config
+
+Create `.coveragerc` in the project's root directory:
+```ini
+[run]
+branch = True
+
+omit =
+    venv/*
+    test/*
+```
+
+### Links
+ * [coverage](https://coverage.readthedocs.io/en/coverage-5.3/)
