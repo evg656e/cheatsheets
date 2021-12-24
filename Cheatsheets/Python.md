@@ -32,6 +32,7 @@
    * [Usage with `unittest`](#Usage-with-unittest)
    * [Config](#Config)
    * [Links](#Links-7)
+ * [Profiling](#Profiling)
 
 
 ## General
@@ -343,3 +344,8 @@ omit =
 
 ### Links
  * [coverage](https://coverage.readthedocs.io/en/coverage-5.3/)
+
+
+## Profiling
+
+**TODO**
