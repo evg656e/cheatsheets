@@ -16,43 +16,43 @@
   * Run VS Code outside the Developer Command Prompt (PowerShell version):
 ```json5
 {
-	"version": "2.0.0",
-	"windows": {
-		"options": {
-			"shell": {
-				"executable": "${env:ProgramFiles}/PowerShell/7/pwsh.exe",
-				"args": [
-					"-c \"&{Import-Module \"\"\"${env:ProgramFiles}/Microsoft Visual Studio/2022/Community/Common7/Tools/Microsoft.VisualStudio.DevShell.dll\"\"\"; pushd; Enter-VsDevShell 0c35fc9f; popd } &&"
-				]
-			}
-		}
-	},
-	"tasks": [
-		{
-			"type": "shell",
-			"label": "C/C++: cl.exe build active file",
-			"command": "cl.exe",
-			"args": [
-				"/Zi",
-				"/EHsc",
-				"/nologo",
-				"/Fe:",
-				"${relativeFileDirname}\\${fileBasenameNoExtension}.exe",
-				"${relativeFile}"
-			],
-			"options": {
-				"cwd": "${workspaceFolder}"
-			},
-			"problemMatcher": [
-				"$msCompile"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"detail": "compiler: cl.exe"
-		}
-	]
+    "version": "2.0.0",
+    "windows": {
+        "options": {
+            "shell": {
+                "executable": "${env:ProgramFiles}/PowerShell/7/pwsh.exe",
+                "args": [
+                    "-c \"&{Import-Module \"\"\"${env:ProgramFiles}/Microsoft Visual Studio/2022/Community/Common7/Tools/Microsoft.VisualStudio.DevShell.dll\"\"\"; pushd; Enter-VsDevShell 0c35fc9f; popd } &&"
+                ]
+            }
+        }
+    },
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "C/C++: cl.exe build active file",
+            "command": "cl.exe",
+            "args": [
+                "/Zi",
+                "/EHsc",
+                "/nologo",
+                "/Fe:",
+                "${relativeFileDirname}\\${fileBasenameNoExtension}.exe",
+                "${relativeFile}"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: cl.exe"
+        }
+    ]
 }
 ```
 
@@ -85,35 +85,35 @@
   * Run `Terminal` 🡢 `Configure Default Build Task` 🡢 `C/C++: clang++.exe build active file` 🡢 `tasks.json`: 
 ```json5
 {
-	"version": "2.0.0",
-	"tasks": [
-		{
-			"type": "cppbuild",
-			"label": "C/C++: clang++.exe build active file",
-			"command": "clang++.exe",
-			"args": [
-				"-fdiagnostics-color=always",
-				"-g",
-				"${relativeFile}",
-				"-o",
-				"${relativeFileDirname}/${fileBasenameNoExtension}.exe"
-			],
-			"options": {
-				"cwd": "${workspaceFolder}",
-				"env": {
-					"PATH": "${env:PATH};${env:LOCALAPPDATA}/Programs/llvm-mingw-ucrt-x86_64/bin"
-				}
-			},
-			"problemMatcher": [
-				"$gcc"
-			],
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			},
-			"detail": "compiler: ${env:LOCALAPPDATA}/Programs/llvm-mingw-ucrt-x86_64/bin/clang++.exe"
-		}
-	]
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "type": "cppbuild",
+            "label": "C/C++: clang++.exe build active file",
+            "command": "clang++.exe",
+            "args": [
+                "-fdiagnostics-color=always",
+                "-g",
+                "${relativeFile}",
+                "-o",
+                "${relativeFileDirname}/${fileBasenameNoExtension}.exe"
+            ],
+            "options": {
+                "cwd": "${workspaceFolder}",
+                "env": {
+                    "PATH": "${env:PATH};${env:LOCALAPPDATA}/Programs/llvm-mingw-ucrt-x86_64/bin"
+                }
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "detail": "compiler: ${env:LOCALAPPDATA}/Programs/llvm-mingw-ucrt-x86_64/bin/clang++.exe"
+        }
+    ]
 }
 ```
   * Run `Run` 🡢 `Add Configuration...` 🡢 `C++ (GDB/LLDB)` 🡢 `clang++.exe - Build and debug active file` 🡢 `launch.json`:
