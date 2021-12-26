@@ -2,8 +2,11 @@
 
 ## Index
 
- * [NPM](#NPM)
-   * [Update all npm dependencies to latest](#Update-all-npm-dependencies-to-latest)
+* [NPM](#npm)
+  * [Update all npm dependencies to latest](#update-all-npm-dependencies-to-latest)
+* [Misc](#misc)
+  * [Update TOC](#update-toc
+
 
 ## NPM
 
@@ -11,4 +14,13 @@
 
 ```console
 npx npm-check-updates -u
+```
+
+
+## Misc
+
+### Update TOC
+
+```console
+npx markdown-toc --no-firsth1 --bullets=* .\Cheatsheets\File.md
 ```

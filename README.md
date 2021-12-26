@@ -8,3 +8,4 @@ My cheatsheets and recipes.
   * [JavaScript](Cheatsheets/JavaScript.md)
   * [PowerShell](Cheatsheets/PowerShell.md)
   * [Python](Cheatsheets/Python.md)
+  * [C++](Cheatsheets/Cpp.md)
