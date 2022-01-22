@@ -8,6 +8,7 @@
    * [Search and replace](#Search-and-replace)
    * [Recursively remove specified directories](#Recursively-remove-specified-directories)
  * [File IO](#File-IO)
+   * [Extract ZIP archive to specified folder](#Extract-ZIP-archive-to-specified-folder)
    * [Illform-encoded file fix](#Illform-encoded-file-fix)
  * [VS Code](#VS-Code)
    * [Open settings file](#Open-settings-file)
@@ -50,6 +51,12 @@ gci -Recurse -Include build, node_modules -Directory | rmdir -Recurse -Force
 ```
 
 ## File IO
+
+### Extract ZIP archive to specified folder
+
+```powershell
+Expand-Archive "$env:USERPROFILE\Downloads\ninja-win.zip" "$env:LOCALAPPDATA\Programs\ninja"
+```
 
 ### Illform-encoded file fix
 
