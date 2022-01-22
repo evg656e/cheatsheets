@@ -2,11 +2,33 @@
 
 ## Index
 
+* [CMake](#cmake)
+  * [Generate compile commands](#generate-compile-commands)
 * [VSCode](#vscode)
   * [Microsoft C++ Setup](#microsoft-c-setup)
   * [Clang Windows Setup](#clang-windows-setup)
   * [Links](#links)
 
+
+## CMake
+
+### Generate compile commands
+
+[Makefiles generators](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html#id10):
+```powershell
+mkdir build
+cd build
+cmake -G"NMake Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+```
+
+[Ninja generator](https://cmake.org/cmake/help/latest/manual/cmake-generators.7.html#id11):
+```powershell
+mkdir build
+cd build
+cmake -G"Ninja" -DCMAKE_EXPORT_COMPILE_COMMANDS=ON ..
+```
+
+See: https://cmake.org/cmake/help/latest/variable/CMAKE_EXPORT_COMPILE_COMMANDS.html
 
 ## VSCode
 
