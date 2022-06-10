@@ -36,6 +36,12 @@ gci -Recurse -Filter package.json | Select-String '"license": ".+?"' -List | %{
     ((gc $_.Path -Raw -Encoding utf8) -replace '"license": ".+?"', '"license": "MIT"') | Out-File $_.Path -NoNewline -Encoding utf8 }
 ```
 
+Another example of traversing:
+```powershell
+gci -Recurse -Include *.py | %{
+    ((gc $_.FullName -Raw -Encoding utf8) -replace 'assertNotEqual', 'assert_not_equals') | Out-File $_.FullName -NoNewline -Encoding utf8 }
+```
+
 Remarks:
  * The `-List` option will group multiple matches within one file into single result.
  * The `-Raw` option will read entire file contents as one string.
